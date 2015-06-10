@@ -1,22 +1,22 @@
 Template.postSubmit.events({
-  'submit form':function(form_data){
-    form_data.preventDefault();
+  'submit form':function(e){
+    e.preventDefault();
 
     var post = {
-      url: $(form_data.target).find('[name=url]').val(),
-     title: $(form_data.target).find('[name=url]').val()
+      url: $(e.target).find('[name=url]').val(),
+     title: $(e.target).find('[name=title]').val()
     };
 
-    Meteor.call('postInsert', post, function(error, post_submission){
+    Meteor.call('postInsert', post, function(error, result){
       if(error) {
         return alert(error.reason);
       }
 
-      if(post_submission.exists){
+      if(result.exists){
         alert("This link has already been posted");
       }
 
-        Router.go('postPage', {_id: post_submission._id});
+        Router.go('postsList');
     });
   }
 });

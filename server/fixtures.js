@@ -37,6 +37,7 @@ if (Posts.find().count() === 0) {
   });
 
 
+
   Posts.insert({
     title: "Meteor", 
     userId: tom._id, 
@@ -54,4 +55,15 @@ if (Posts.find().count() === 0) {
     submitted: new Date(now - 12 * 3600 * 1000), 
     commentsCount: 0
   });
+
+  for(var i = 0; i < 40; ++i){
+    Posts.insert({
+      title: "Sample", 
+      userId: sacha._id, 
+      author: sacha.profile.name, 
+      url: "http://www.time.com" + i, 
+      submitted: new Date(now - i * 3600 * 1000), 
+      commentsCount: 0
+    });
+  }
 }
